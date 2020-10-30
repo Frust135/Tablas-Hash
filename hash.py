@@ -1,16 +1,16 @@
-def double_hash(h1,h2, arreglo):
-    aa = h1
-    b=1
-    while arreglo[aa] != -1:
-        aa = (h1 + b* h2)%10
-        b=b+1       
-    return aa
+def double_hash(h1 ,h2 ,arreglo):
+    indice = h1
+    aumentador = 1
+    while arreglo[indice] != -1:
+        indice = (h1 + aumentador* h2)%10
+        aumentador = aumentador+1       
+    return indice
 
-def esPrimo(x):
+def esPrimo(numero):
     contador = 0
-    for f in range(1,x+1,1):
-        div = x % f
-        if div == 0:
+    for iteracion_numero in range(1,numero+1,1):
+        resto = numero % iteracion_numero
+        if resto == 0:
             contador = contador+1
 
     if contador == 2:
@@ -18,30 +18,30 @@ def esPrimo(x):
     else:
         return 0
 
-def NumeroPrimoMasCercano(x):
-    for s in range(x,0,-1):
-        primo = esPrimo(s)
+def NumeroPrimoMasCercano(numero):
+    ##recorrido menor a menor 
+    for valor in range(numero,0,-1):
+        primo = esPrimo(valor)
         if primo == 1:
-            return s
+            return valor
 
 def hashing(arreglo_ingresado, arreglo_nuevo):
-    largoAI = len(arreglo_ingresado)
-    for x in range (0,largoAI,1):
+    largo_arreglo_ingresado = len(arreglo_ingresado)
+    for x in range (0,largo_arreglo_ingresado,1):
         elemento = arreglo_ingresado[x]
-        largoAN = len(arreglo_nuevo)
-        indice_elemento = int(elemento)%largoAN
+        largo_arreglo_nuevo = len(arreglo_nuevo)
+        indice_elemento = int(elemento)%largo_arreglo_nuevo
         print("El indice es: ", indice_elemento," del elemento: ", elemento)
         
         while arreglo_nuevo[indice_elemento]!= -1:
             print("OCURRIO UNA COLISIÓN EN EL INDICE")
-            Nprimo = NumeroPrimoMasCercano(largoAN)
-            calcu = int(elemento%Nprimo)
-            h2 = Nprimo-calcu
-            indice_elemento = double_hash(indice_elemento,h2,arreglo_nuevo)
+            numero_primo = NumeroPrimoMasCercano(largo_arreglo_nuevo)
+            calculo = int(elemento%numero_primo)
+            ecuacion_2 = numero_primo-calculo
+            indice_elemento = double_hash(indice_elemento,ecuacion_2,arreglo_nuevo)
             print("El indice real es:",indice_elemento, "del elemento:",elemento)      
            
         arreglo_nuevo[indice_elemento] = elemento
-
     return arreglo_nuevo
 
 arregloIngresado = [5,25,15,35,95]    

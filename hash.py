@@ -1,11 +1,14 @@
-import numpy as np
+
 
 def double_hash(h1,h2, arreglo):
-        b=1
+    aa = h1
+    b=1
+    while arreglo[aa] != -1:
         aa = (h1 + b* h2)%10
-        print(h1)
-        return aa
-
+        print(aa)
+        b=b+1
+        
+    return aa
 
 def hashing(arreglo_ingresado, arreglo_nuevo):
     
@@ -18,14 +21,14 @@ def hashing(arreglo_ingresado, arreglo_nuevo):
             print("OCURRIO UNA COLISIÓN EN EL INDICE")
             calcu = int(elemento%7)
             h2 = 7-calcu
-            print(h2)
+            
+            
             indice_elemento = double_hash(indice_elemento,h2,arreglo_nuevo)
-            print(indice_elemento)
-            arreglo_nuevo[indice_elemento] = elemento
+            print("El indice real es:",indice_elemento, "del elemento:",elemento)
+            
             a=9
         arreglo_nuevo[indice_elemento] = elemento
 
-        print("algo", arreglo_nuevo[indice_elemento])
     return arreglo_nuevo
 
 arreglo = [5,25,15,35,95]    

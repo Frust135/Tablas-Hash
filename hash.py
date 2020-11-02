@@ -65,5 +65,11 @@ def hashing(clave, valor, tabla_hash):
     tabla_hash[indice_elemento] = valor
     return [tabla_hash,indice,colision, nuevo_indice]
 
-
-
+# ____________________________________________________________
+#
+# Función que realiza la busqueda
+# ____________________________________________________________
+def busqueda(clave, tabla_hash):
+    largo_hash = len(tabla_hash)
+    indice_elemento=get_ascii(clave)%largo_hash
+    return indice_elemento

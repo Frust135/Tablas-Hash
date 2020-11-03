@@ -23,8 +23,8 @@ def insertar_dato(clave, valor, tabla_hash):
     update_table(tabla_hash)
     return NONE
 
-def obtener_dato(clave):
-    indice = busqueda(clave,tabla_hash)
+def obtener_dato(clave,valor):
+    indice = busqueda(clave, valor,tabla_hash)
     if (tabla_hash[indice]==-1):
         dato_retorno=("El color " +str(clave)+" no se encuentra"+ '\n' + "almacenado en la tabla HASH")
     else:
@@ -73,8 +73,11 @@ titulo_busqueda_color.place(x=128, y=300)
 Entrada_busqueda_color = Entry(width="40", bg='#F3CCCD')
 Entrada_busqueda_color.place(x=64, y=330)
 
-btn_buscar = Button(ventana, text="Buscar", bg="#F3CCCD", command=lambda:obtener_dato(Entrada_busqueda_color.get()))
-btn_buscar.place(x=153, y=365)
+Entrada_busqueda_hex = Entry(width="40", bg='#F3CCCD')
+Entrada_busqueda_hex.place(x=64, y=357)
+
+btn_buscar = Button(ventana, text="Buscar", bg="#F3CCCD", command=lambda:obtener_dato(Entrada_busqueda_color.get(),Entrada_codigo_hex.get()))
+btn_buscar.place(x=153, y=390)
 #-------------------------------------------------------------------
 #          Creación de box 2
 #------------------------------------------------------------------

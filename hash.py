@@ -63,7 +63,6 @@ def hashing(clave, valor, tabla_hash):
         ecuacion = numero_primo-calculo
         indice_elemento = double_hash(indice_elemento, ecuacion, tabla_hash)
         nuevo_indice=("El indice nuevo de "+str(clave)+ " es: "+str(indice_elemento))
-    
     tabla_hash[indice_elemento] = valor
     return [tabla_hash,indice,colision, nuevo_indice]
 
@@ -71,28 +70,19 @@ def hashing(clave, valor, tabla_hash):
 #
 # Función que realiza la busqueda
 # ____________________________________________________________
-#def busqueda(clave, tabla_hash):
-#    largo_hash = len(tabla_hash)
-#     indice_elemento=get_ascii(clave)%largo_hash
-# return indice_elemento
-
-def busqueda(clave,valor, tabla_hash):
-
+def busqueda(clave, valor, tabla_hash):
     largo_hash = len(tabla_hash)
-    index1 = get_ascii(clave)%largo_hash
-    
-    numero_primo = NumeroPrimoMasCercano(largo_hash)
-    calculo = int(get_ascii(clave)%numero_primo)
-    index2 = numero_primo-calculo
-    i = 0
-    
-    while(tabla_hash[(index1 + i * index2)%largo_hash] != valor):
-        if tabla_hash[(index1 + i * index2)%largo_hash] == -1:
-            print("no existe")
-            return -1
-        i = i+1
-    return tabla_hash[(index1 + i* index2)%largo_hash]
-        
+    indice_elemento=get_ascii(clave)%largo_hash
+    if tabla_hash[indice_elemento]!=valor:
+        numero_primo = NumeroPrimoMasCercano(largo_hash)
+        calculo = int(get_ascii(clave)%numero_primo)
+        ecuacion = numero_primo-calculo
+        for contador in range(1,20):
+            indice_elemento = (indice_elemento + contador* ecuacion)%10 
+            if tabla_hash[indice_elemento]==valor:
+                return indice_elemento  
+    return indice_elemento
+
 
 
 
